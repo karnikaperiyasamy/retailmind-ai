@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailMind AI — Evidence-Driven Sales & Inventory Copilot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Chart.js for interactive analytics visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>RetailMind <span class="ai-badge">AI</span></h2>
+                    <p class="track-tag">Track PS03 • NexusTiQ24</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="attention">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Attention Center</span>
+                    <span class="badge badge-pulse" id="nav-alert-badge">0</span>
+                </button>
+                <button class="nav-item" data-tab="copilot">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M8 9h8"></path><path d="M8 13h6"></path></svg>
+                    <span>AI Copilot</span>
+                    <span class="tag-gemini">Gemini</span>
+                </button>
+                <button class="nav-item" data-tab="products">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    <span>Products</span>
+                </button>
+                <button class="nav-item" data-tab="stores">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    <span>Stores</span>
+                </button>
+            </nav>
+
+            <!-- Grounding Transparency Mini Widget -->
+            <div class="sidebar-footer">
+                <div class="grounding-card">
+                    <div class="grounding-header">
+                        <span class="dot-live"></span>
+                        <span class="grounding-title">Grounding Pipeline</span>
+                    </div>
+                    <div class="grounding-flow">
+                        <span>DATA</span> &rarr;
+                        <span>PYTHON</span> &rarr;
+                        <span>EVIDENCE</span> &rarr;
+                        <span>GEMINI</span>
+                    </div>
+                    <p class="grounding-sub">100% Deterministic Math. Zero Hallucinated Numbers.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top App Bar -->
+            <header class="top-bar">
+                <div class="header-left">
+                    <h1 id="page-title">Executive Dashboard</h1>
+                    <p class="subtitle" id="page-subtitle">Real-time sales velocity, inventory risks, and verifiable intelligence</p>
+                </div>
+                <div class="header-right">
+                    <div class="status-pill" id="system-status-pill">
+                        <span class="status-indicator"></span>
+                        <span id="gemini-status-text">Connecting...</span>
+                    </div>
+                    <div class="date-context">
+                        <span class="label">Dataset Horizon:</span>
+                        <span class="value" id="date-horizon-val">Jun 1 - Aug 31, 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- TAB 1: DASHBOARD -->
+            <section id="tab-dashboard" class="tab-pane active">
+                <!-- KPI Cards Row -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-label">30-Day Gross Revenue</div>
+                        <div class="kpi-val" id="kpi-total-sales">Loading...</div>
+                        <div class="kpi-meta">Gross margin: <span id="kpi-margin">--</span></div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Units Sold (30d)</div>
+                        <div class="kpi-val" id="kpi-units-sold">Loading...</div>
+                        <div class="kpi-meta">Across 3 physical store locations</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Total Inventory In Stock</div>
+                        <div class="kpi-val" id="kpi-total-stock">Loading...</div>
+                        <div class="kpi-meta">Valuation: <span id="kpi-stock-val">--</span></div>
+                    </div>
+                    <div class="kpi-card danger-card">
+                        <div class="kpi-label">Stock-Out Risks (&le; 7d)</div>
+                        <div class="kpi-val text-danger" id="kpi-stockouts">Loading...</div>
+                        <div class="kpi-meta">Likely stockouts without replenishment</div>
+                    </div>
+                    <div class="kpi-card warning-card">
+                        <div class="kpi-label">Overstocked SKUs (&ge; 45d)</div>
+                        <div class="kpi-val text-warning" id="kpi-overstock">Loading...</div>
+                        <div class="kpi-meta">Excess capital tied up</div>
+                    </div>
+                    <div class="kpi-card info-card">
+                        <div class="kpi-label">Active Sales Alerts</div>
+                        <div class="kpi-val text-info" id="kpi-alerts">Loading...</div>
+                        <div class="kpi-meta">Spikes, drops & slow movers</div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card wide-chart">
+                        <div class="card-header">
+                            <div>
+                                <h3>90-Day Revenue Trend</h3>
+                                <p class="card-desc">Daily gross sales volume across all store operations</p>
+                            </div>
+                            <span class="badge badge-neutral">June 1 - August 31</span>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="salesTrendChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Sales by Category</h3>
+                                <p class="card-desc">30-day revenue distribution</p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Top 5 Products by Revenue</h3>
+                                <p class="card-desc">Leading SKUs over the last 30 days</p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="topProductsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Store Performance Share</h3>
+                                <p class="card-desc">Downtown vs Mall vs Airport</p>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="storeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: ATTENTION CENTER -->
+            <section id="tab-attention" class="tab-pane">
+                <div class="attention-header-box">
+                    <div class="alert-banner">
+                        <div class="banner-title">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            <span>Needs Attention Today</span>
+                        </div>
+                        <p>Actionable operational alerts derived strictly from deterministic inventory run-rates and baseline comparisons. Every recommendation requires store manager evaluation (Human-in-the-Loop).</p>
+                    </div>
+                </div>
+
+                <!-- Sub-filters for attention -->
+                <div class="attention-tabs">
+                    <button class="att-filter-btn active" data-filter="all">All Alerts (<span id="count-all-att">0</span>)</button>
+                    <button class="att-filter-btn" data-filter="stockouts">Stock-Out Risks (<span id="count-stockouts-att">0</span>)</button>
+                    <button class="att-filter-btn" data-filter="overstock">Overstocked (<span id="count-overstock-att">0</span>)</button>
+                    <button class="att-filter-btn" data-filter="slow">Slow Moving (<span id="count-slow-att">0</span>)</button>
+                    <button class="att-filter-btn" data-filter="spikes">Sales Spikes (<span id="count-spikes-att">0</span>)</button>
+                    <button class="att-filter-btn" data-filter="drops">Sales Drops (<span id="count-drops-att">0</span>)</button>
+                </div>
+
+                <div id="attention-items-container" class="attention-list">
+                    <!-- Dynamic attention cards loaded here -->
+                </div>
+            </section>
+
+            <!-- TAB 3: AI COPILOT -->
+            <section id="tab-copilot" class="tab-pane">
+                <div class="copilot-container">
+                    <div class="copilot-header">
+                        <div class="copilot-intro">
+                            <h2>Ask RetailMind AI</h2>
+                            <p>Plain-language retail intelligence. Backed by verified Python analytics, traceable evidence, transparent calculations, and zero hallucinations.</p>
+                        </div>
+                        <div class="copilot-badges">
+                            <span class="badge badge-gemini">Gemini Reasoning</span>
+                            <span class="badge badge-verified">Traceable Evidence</span>
+                            <span class="badge badge-human">Human-In-The-Loop</span>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Prompts / Quick Questions -->
+                    <div class="prompt-chips-section">
+                        <div class="chips-label">Suggested Inquiries:</div>
+                        <div class="prompt-chips">
+                            <button class="chip" onclick="askCopilot('What is running out?')">What is running out?</button>
+                            <button class="chip" onclick="askCopilot('Which products are overstocked?')">Which products are overstocked?</button>
+                            <button class="chip" onclick="askCopilot('Which products are slow moving?')">Which products are slow moving?</button>
+                            <button class="chip" onclick="askCopilot('How did Wireless Ergonomic Mouse perform this month?')">How did Wireless Mouse perform?</button>
+                            <button class="chip" onclick="askCopilot('Which store has the highest sales?')">Which store has highest sales?</button>
+                            <button class="chip" onclick="askCopilot('Which products had a sales spike?')">Which products had a sales spike?</button>
+                            <button class="chip" onclick="askCopilot('Show me products with falling sales.')">Products with falling sales?</button>
+                            <button class="chip" onclick="askCopilot('Compare Downtown Store and Mall Store.')">Compare Downtown & Mall</button>
+                            <button class="chip chip-stress" onclick="askCopilot('Why did sales decrease?')">Why did sales decrease? (Stress Test)</button>
+                            <button class="chip chip-stress" onclick="askCopilot('What will our exact sales be six months from now?')">Exact sales in 6 months? (Stress Test)</button>
+                        </div>
+                    </div>
+
+                    <!-- Conversation History Stream -->
+                    <div class="chat-stream" id="chatStream">
+                        <div class="welcome-message">
+                            <div class="bot-avatar">RM</div>
+                            <div class="bot-bubble">
+                                <p><strong>Hello Store Manager.</strong> I am your sales and inventory copilot. Ask me questions about stock depletion, overstocked SKUs, sales anomalies, or store performance.</p>
+                                <p class="bot-notice"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Every answer is accompanied by verifiable calculations, assumptions, and source CSV traceability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Bar -->
+                    <div class="copilot-input-bar">
+                        <form id="copilotForm" onsubmit="handleCopilotSubmit(event)">
+                            <div class="input-wrapper">
+                                <input type="text" id="copilotInput" placeholder="Ask anything, e.g., 'What is running out at the Mall Store?'" autocomplete="off">
+                                <button type="submit" id="sendBtn" class="btn-send">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    <span>Ask</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: PRODUCTS CATALOG -->
+            <section id="tab-products" class="tab-pane">
+                <div class="table-controls">
+                    <div class="search-box">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="productSearch" placeholder="Search product name or SKU..." oninput="filterProducts()">
+                    </div>
+                    <div class="filter-group">
+                        <select id="categoryFilter" onchange="filterProducts()">
+                            <option value="all">All Categories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Personal Care">Personal Care</option>
+                            <option value="Home">Home</option>
+                            <option value="Stationery">Stationery</option>
+                        </select>
+                        <select id="statusFilter" onchange="filterProducts()">
+                            <option value="all">All Statuses</option>
+                            <option value="Stockout Risk">Stockout Risk</option>
+                            <option value="Overstocked">Overstocked</option>
+                            <option value="Slow Moving">Slow Moving</option>
+                            <option value="Healthy">Healthy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="data-table-card">
+                    <table class="data-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Selling Price</th>
+                                <th>Current Stock</th>
+                                <th>Avg Daily Sales (30d)</th>
+                                <th>Days of Inventory</th>
+                                <th>30d Sales</th>
+                                <th>Health Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 5: STORES OVERVIEW -->
+            <section id="tab-stores" class="tab-pane">
+                <div class="stores-grid" id="storesContainer">
+                    <!-- Dynamic store cards -->
+                </div>
+
+                <div class="store-comparison-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Cross-Store Benchmark Comparison</h3>
+                            <p class="card-desc">Compare operational velocity and inventory between branches</p>
+                        </div>
+                        <div class="comparison-selectors">
+                            <select id="compareStore1" onchange="renderStoreComparison()">
+                                <option value="S001">S001 — Downtown Store</option>
+                                <option value="S002">S002 — Mall Store</option>
+                                <option value="S003">S003 — Airport Store</option>
+                            </select>
+                            <span class="vs-text">VS</span>
+                            <select id="compareStore2" onchange="renderStoreComparison()">
+                                <option value="S002" selected>S002 — Mall Store</option>
+                                <option value="S001">S001 — Downtown Store</option>
+                                <option value="S003">S003 — Airport Store</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="storeComparisonContent" class="comparison-body">
+                        <!-- Dynamic Comparison Table -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="productModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="badge badge-neutral" id="modalSku">P001</span>
+                    <h2 id="modalTitle">Product Details</h2>
+                </div>
+                <button class="btn-close" onclick="closeModalDirect()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
