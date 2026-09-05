@@ -28,7 +28,7 @@
 - [x] **Automated test suite**: 25 automated unit and REST endpoint tests passing via `python -m unittest tests/test_retailmind.py`
 - [x] **Submission documentation complete**: `README.md`, `DEMO_SCRIPT.md`, `PITCH.md`, `EVALUATION_MAPPING.md`
 - [x] **GitHub repository URL**: https://github.com/karnikaperiyasamy/retailmind-ai
-- [ ] **Application deployed URL**: [Pending Render service launch]
+- [x] **Application deployed URL**: https://retailmind-ai-e5gv.onrender.com
 - [ ] **Demo video link**: [Insert 3-5 minute demo video URL here]
 - [ ] **Devfolio submission**: Ready for submission on Devfolio portal
 

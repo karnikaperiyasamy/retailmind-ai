@@ -2,6 +2,9 @@ TRACK_ID=PS03
 # RetailMind AI
 > Evidence-driven sales and inventory intelligence for retail managers.
 
+**Live Application URL**: [https://retailmind-ai-e5gv.onrender.com](https://retailmind-ai-e5gv.onrender.com)  
+**GitHub Repository**: [https://github.com/karnikaperiyasamy/retailmind-ai](https://github.com/karnikaperiyasamy/retailmind-ai)
+
 RetailMind AI is an enterprise-grade retail sales and inventory intelligence copilot built for the **NexusTiQ24 Hackathon** under **Track PS03: Retail — Sales and Inventory Copilot**.
 
 ---
@@ -258,7 +261,8 @@ All tests execute in &le; 1 second, validating:
 ---
 
 ## 14. Deployment Configuration
-RetailMind AI is configured for one-click deployment to **Render**:
+RetailMind AI is deployed and live on **Render**:
+- **Production Web Service**: [https://retailmind-ai-e5gv.onrender.com](https://retailmind-ai-e5gv.onrender.com)
 - `render.yaml`: Defines the web service, build command (`pip install -r requirements.txt`), and production start command (`gunicorn app:app`).
 - `Procfile`: Standard `web: gunicorn app:app`.
 - Binds to `0.0.0.0` and respects the `PORT` environment variable.
