@@ -315,8 +315,7 @@ retailmind-ai/
 
 ## 16. Demo Video
 Demo Video:
-[Add final demo video link here]
-
+https://youtu.be/TSCvy0FU2U0
 ---
 
 ## 17. Limitations & Future Roadmap
