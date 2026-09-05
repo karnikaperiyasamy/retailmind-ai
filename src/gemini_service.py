@@ -58,10 +58,11 @@ class GeminiService:
                 logger.warning(f"Failed to configure Gemini: {e}.")
                 self.provider = "none"
 
+        self.groq_model = "llama-3.3-70b-versatile" if self.has_groq else None
+
         # If Gemini is not configured or failed, use Groq as secondary
         if self.provider == "none" and self.has_groq:
             self.provider = "groq"
-            self.groq_model = "qwen/qwen3.8-27b"
             logger.info(f"LLM Service initialized with Groq API (model: {self.groq_model}).")
         elif self.provider == "none":
             logger.info("No external LLM key configured. Deterministic zero-hallucination synthesis active.")
@@ -87,7 +88,12 @@ class GeminiService:
             try:
                 return self._call_gemini(question, intent, evidence_package)
             except Exception as e:
-                logger.warning(f"Gemini API call failed: {e}. Falling back to deterministic synthesis.")
+                logger.warning(f"Gemini API call failed: {e}. Attempting Groq fallback if configured.")
+                if self.groq_key:
+                    try:
+                        return self._call_groq(question, intent, evidence_package)
+                    except Exception as ge:
+                        logger.warning(f"Groq fallback failed: {ge}. Falling back to deterministic synthesis.")
                 return self._synthesize_deterministic(question, intent, evidence_package, fallback_reason=f"Gemini: {e}")
         else:
             return self._synthesize_deterministic(question, intent, evidence_package)
@@ -106,7 +112,7 @@ class GeminiService:
             "STRICT RULES:\n"
             "1. NEVER invent or hallucinate any numbers, percentages, or dates.\n"
             "2. Use ONLY the facts provided in the EVIDENCE PACKAGE.\n"
-            "3. If the user asks for causes (e.g. 'Why did sales decrease?'), state that the transaction records confirm the drop but do not record customer footfall or external causes.\n"
+            "3. If the user asks for causes (e.g. 'Why did sales decrease?'), state that the transaction records confirm the drop but do not contain sufficient data regarding footfall or external causes.\n"
             "4. If the user asks for distant forecasts (e.g. 'What will sales be six months from now?'), state that the dataset does not contain sufficient information to predict six months out.\n"
             "5. You MUST return ONLY a JSON object with this exact schema:\n"
             "{\n"
@@ -130,7 +136,7 @@ class GeminiService:
                 {"role": "user", "content": user_content}
             ],
             "temperature": 0.1,
-            "max_tokens": 1024,
+            "max_tokens": 600,
             "response_format": {"type": "json_object"}
         }
 
@@ -174,7 +180,7 @@ You are the RetailMind AI Copilot for a store manager running 3 stores.
 You must adhere strictly to these rules:
 1. NEVER invent or hallucinate any numbers, percentages, currency figures, or dates.
 2. Use ONLY the facts provided in the EVIDENCE PACKAGE below.
-3. If the user asks for causes (e.g. "Why did sales decrease?"), state clearly that the transaction records confirm the drop but do not record customer footfall or external causes.
+3. If the user asks for causes (e.g. "Why did sales decrease?"), state clearly that the transaction records confirm the drop but do not contain sufficient data regarding footfall or external causes.
 4. If the user asks for distant forecasts (e.g. "What will sales be six months from now?"), state that the dataset does not contain sufficient information to predict six months out.
 5. Provide a helpful, clear natural-language explanation and actionable recommendation for a human store manager.
 

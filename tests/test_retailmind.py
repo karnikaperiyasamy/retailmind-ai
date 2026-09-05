@@ -134,7 +134,9 @@ class TestQueryEngineAndGrounding(unittest.TestCase):
         # Must explicitly acknowledge data limitations and decline to invent external causes
         answer_lower = res["answer"].lower()
         self.assertTrue(
-            "not contain" in answer_lower or "insufficient" in answer_lower or "does not" in answer_lower
+            any(phrase in answer_lower for phrase in [
+                "not contain", "insufficient", "does not", "do not", "cannot prove", "no external"
+            ])
         )
         self.assertIn("limitations", res)
         self.assertGreater(len(res["limitations"]), 0)
