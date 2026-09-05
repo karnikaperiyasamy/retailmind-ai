@@ -19,6 +19,7 @@ load_dotenv()
 from src.data_loader import DataLoader
 from src.analytics import AnalyticsEngine
 from src.recommendations import RecommendationEngine
+from src.attention import AttentionCenter
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -31,7 +32,8 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 try:
     data_loader = DataLoader.get_instance()
     analytics = AnalyticsEngine(data_loader)
-    logger.info("Data loader and Analytics engine initialized successfully.")
+    attention_center = AttentionCenter(analytics)
+    logger.info("Data loader, Analytics engine, and Attention center initialized successfully.")
 except Exception as e:
     logger.error(f"Failed to initialize data loader or analytics: {e}")
     raise
