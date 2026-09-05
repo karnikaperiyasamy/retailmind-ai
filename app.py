@@ -72,7 +72,7 @@ def api_health():
     """System health check and status."""
     has_groq = bool(os.environ.get("GROQ_API_KEY", "").strip() and os.environ.get("GROQ_API_KEY") != "your_groq_api_key_here")
     has_gemini = bool(os.environ.get("GEMINI_API_KEY", "").strip() and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here")
-    llm_provider = "Groq (qwen3.8-27b)" if has_groq else ("Gemini 1.5 Flash" if has_gemini else "Deterministic Fallback")
+    llm_provider = "Gemini Flash (gemini-flash-latest)" if has_gemini else ("Groq (qwen3.8-27b)" if has_groq else "Deterministic Fallback")
 
     return jsonify({
         "status": "healthy",

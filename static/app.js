@@ -98,12 +98,12 @@ async function fetchHealth() {
         const pill = document.getElementById('system-status-pill');
         const ind = pill.querySelector('.status-indicator');
 
-        if (data.groq_available) {
-            statusText.textContent = 'Groq Active';
+        if (data.gemini_available) {
+            statusText.textContent = 'Gemini Active';
             ind.style.backgroundColor = '#10B981';
             ind.style.boxShadow = '0 0 8px #10B981';
-        } else if (data.gemini_available) {
-            statusText.textContent = 'Gemini Active';
+        } else if (data.groq_available) {
+            statusText.textContent = 'Groq Active';
             ind.style.backgroundColor = '#10B981';
             ind.style.boxShadow = '0 0 8px #10B981';
         } else {

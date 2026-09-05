@@ -29,29 +29,41 @@ class GeminiService:
 
         self.provider = "none"
         self.gemini_model = None
+        self.gemini_model_name = "gemini-flash-latest"
 
-        if self.has_groq:
-            self.provider = "groq"
-            self.groq_model = "qwen/qwen3.8-27b"
-            logger.info(f"LLM Service initialized with Groq API (model: {self.groq_model}).")
-        elif self.has_gemini:
+        # Prioritize Google Gemini as mandated by Track PS03 specification
+        if self.has_gemini:
             try:
                 import google.generativeai as genai
                 genai.configure(api_key=self.gemini_key)
-                self.gemini_model = genai.GenerativeModel(
-                    model_name="gemini-1.5-flash",
-                    generation_config={
-                        "temperature": 0.1,
-                        "top_p": 0.95,
-                        "max_output_tokens": 1024,
-                    }
-                )
-                self.provider = "gemini"
-                logger.info("LLM Service initialized with Google Gemini API (gemini-1.5-flash).")
+                # Try preferred models
+                candidate_models = ["gemini-flash-latest", "gemini-3.7-flash", "gemini-2.5-flash-lite", "gemini-pro-latest", "gemini-1.5-flash"]
+                for m_name in candidate_models:
+                    try:
+                        self.gemini_model = genai.GenerativeModel(
+                            model_name=m_name,
+                            generation_config={
+                                "temperature": 0.1,
+                                "top_p": 0.95,
+                                "max_output_tokens": 1024,
+                            }
+                        )
+                        self.gemini_model_name = m_name
+                        self.provider = "gemini"
+                        logger.info(f"LLM Service initialized with Google Gemini API ({m_name}).")
+                        break
+                    except Exception:
+                        continue
             except Exception as e:
-                logger.warning(f"Failed to configure Gemini: {e}. Falling back to deterministic mode.")
+                logger.warning(f"Failed to configure Gemini: {e}.")
                 self.provider = "none"
-        else:
+
+        # If Gemini is not configured or failed, use Groq as secondary
+        if self.provider == "none" and self.has_groq:
+            self.provider = "groq"
+            self.groq_model = "qwen/qwen3.8-27b"
+            logger.info(f"LLM Service initialized with Groq API (model: {self.groq_model}).")
+        elif self.provider == "none":
             logger.info("No external LLM key configured. Deterministic zero-hallucination synthesis active.")
 
     @property
