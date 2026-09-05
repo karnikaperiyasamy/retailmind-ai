@@ -1,0 +1,315 @@
+[
+  {
+    "id": "prod_P001",
+    "type": "product",
+    "product_id": "P001",
+    "product_name": "UltraFast USB-C Cable 2m",
+    "category": "Electronics",
+    "text": "Product UltraFast USB-C Cable 2m (SKU: P001). Category: Electronics. Selling Price: \u20b9499.0, Cost Price: \u20b9180.0. Reorder Threshold: 30 units. Supplier: AnkerTech Logistics."
+  },
+  {
+    "id": "prod_P002",
+    "type": "product",
+    "product_id": "P002",
+    "product_name": "Compact Power Bank 10000mAh",
+    "category": "Electronics",
+    "text": "Product Compact Power Bank 10000mAh (SKU: P002). Category: Electronics. Selling Price: \u20b91499.0, Cost Price: \u20b9750.0. Reorder Threshold: 20 units. Supplier: VoltCorp Hardware."
+  },
+  {
+    "id": "prod_P003",
+    "type": "product",
+    "product_id": "P003",
+    "product_name": "Noise Cancelling Headphones",
+    "category": "Electronics",
+    "text": "Product Noise Cancelling Headphones (SKU: P003). Category: Electronics. Selling Price: \u20b94999.0, Cost Price: \u20b92800.0. Reorder Threshold: 15 units. Supplier: AuraSound Ltd."
+  },
+  {
+    "id": "prod_P004",
+    "type": "product",
+    "product_id": "P004",
+    "product_name": "Bluetooth Travel Speaker",
+    "category": "Electronics",
+    "text": "Product Bluetooth Travel Speaker (SKU: P004). Category: Electronics. Selling Price: \u20b92499.0, Cost Price: \u20b91200.0. Reorder Threshold: 18 units. Supplier: AuraSound Ltd."
+  },
+  {
+    "id": "prod_P014",
+    "type": "product",
+    "product_id": "P014",
+    "product_name": "Wireless Ergonomic Mouse",
+    "category": "Electronics",
+    "text": "Product Wireless Ergonomic Mouse (SKU: P014). Category: Electronics. Selling Price: \u20b91299.0, Cost Price: \u20b9600.0. Reorder Threshold: 25 units. Supplier: LogiGear Supplies."
+  },
+  {
+    "id": "prod_P015",
+    "type": "product",
+    "product_id": "P015",
+    "product_name": "Mechanical Keyboard RGB",
+    "category": "Electronics",
+    "text": "Product Mechanical Keyboard RGB (SKU: P015). Category: Electronics. Selling Price: \u20b93899.0, Cost Price: \u20b92100.0. Reorder Threshold: 12 units. Supplier: LogiGear Supplies."
+  },
+  {
+    "id": "prod_P005",
+    "type": "product",
+    "product_id": "P005",
+    "product_name": "Whole Bean Dark Roast 500g",
+    "category": "Beverages",
+    "text": "Product Whole Bean Dark Roast 500g (SKU: P005). Category: Beverages. Selling Price: \u20b9650.0, Cost Price: \u20b9320.0. Reorder Threshold: 25 units. Supplier: BlueTokai Coffee Estates."
+  },
+  {
+    "id": "prod_P006",
+    "type": "product",
+    "product_id": "P006",
+    "product_name": "Organic Matcha Green Tea 100g",
+    "category": "Beverages",
+    "text": "Product Organic Matcha Green Tea 100g (SKU: P006). Category: Beverages. Selling Price: \u20b9850.0, Cost Price: \u20b9450.0. Reorder Threshold: 20 units. Supplier: Kyoto Pure Imports."
+  },
+  {
+    "id": "prod_P007",
+    "type": "product",
+    "product_id": "P007",
+    "product_name": "Sparkling Spring Water 500ml",
+    "category": "Beverages",
+    "text": "Product Sparkling Spring Water 500ml (SKU: P007). Category: Beverages. Selling Price: \u20b990.0, Cost Price: \u20b935.0. Reorder Threshold: 50 units. Supplier: Himalayan Waters Co."
+  },
+  {
+    "id": "prod_P008",
+    "type": "product",
+    "product_id": "P008",
+    "product_name": "Organic Cold Brew 1L",
+    "category": "Beverages",
+    "text": "Product Organic Cold Brew 1L (SKU: P008). Category: Beverages. Selling Price: \u20b9340.0, Cost Price: \u20b9160.0. Reorder Threshold: 60 units. Supplier: BlueTokai Coffee Estates."
+  },
+  {
+    "id": "prod_P016",
+    "type": "product",
+    "product_id": "P016",
+    "product_name": "Artisan Kombucha Ginger 330ml",
+    "category": "Beverages",
+    "text": "Product Artisan Kombucha Ginger 330ml (SKU: P016). Category: Beverages. Selling Price: \u20b9180.0, Cost Price: \u20b985.0. Reorder Threshold: 30 units. Supplier: FermentCo Botanicals."
+  },
+  {
+    "id": "prod_P009",
+    "type": "product",
+    "product_id": "P009",
+    "product_name": "Roasted Almonds 250g",
+    "category": "Grocery",
+    "text": "Product Roasted Almonds 250g (SKU: P009). Category: Grocery. Selling Price: \u20b9399.0, Cost Price: \u20b9240.0. Reorder Threshold: 30 units. Supplier: NutriHarvest Farms."
+  },
+  {
+    "id": "prod_P010",
+    "type": "product",
+    "product_id": "P010",
+    "product_name": "Organic Wildflower Honey 500g",
+    "category": "Grocery",
+    "text": "Product Organic Wildflower Honey 500g (SKU: P010). Category: Grocery. Selling Price: \u20b9520.0, Cost Price: \u20b9290.0. Reorder Threshold: 25 units. Supplier: BeeNatural Apiculture."
+  },
+  {
+    "id": "prod_P011",
+    "type": "product",
+    "product_id": "P011",
+    "product_name": "Quinoa Crunch Granola 400g",
+    "category": "Grocery",
+    "text": "Product Quinoa Crunch Granola 400g (SKU: P011). Category: Grocery. Selling Price: \u20b9450.0, Cost Price: \u20b9230.0. Reorder Threshold: 25 units. Supplier: NutriHarvest Farms."
+  },
+  {
+    "id": "prod_P012",
+    "type": "product",
+    "product_id": "P012",
+    "product_name": "Dark Chocolate 72% Single Origin",
+    "category": "Grocery",
+    "text": "Product Dark Chocolate 72% Single Origin (SKU: P012). Category: Grocery. Selling Price: \u20b9280.0, Cost Price: \u20b9130.0. Reorder Threshold: 40 units. Supplier: CacaoCraft Confections."
+  },
+  {
+    "id": "prod_P017",
+    "type": "product",
+    "product_id": "P017",
+    "product_name": "Extra Virgin Olive Oil 500ml",
+    "category": "Grocery",
+    "text": "Product Extra Virgin Olive Oil 500ml (SKU: P017). Category: Grocery. Selling Price: \u20b9890.0, Cost Price: \u20b9520.0. Reorder Threshold: 20 units. Supplier: Mediterranean Gold."
+  },
+  {
+    "id": "prod_P013",
+    "type": "product",
+    "product_id": "P013",
+    "product_name": "Natural Charcoal Face Wash 150ml",
+    "category": "Personal Care",
+    "text": "Product Natural Charcoal Face Wash 150ml (SKU: P013). Category: Personal Care. Selling Price: \u20b9350.0, Cost Price: \u20b9150.0. Reorder Threshold: 30 units. Supplier: EarthPure Labs."
+  },
+  {
+    "id": "prod_P018",
+    "type": "product",
+    "product_id": "P018",
+    "product_name": "Hydrating Sunscreen SPF 50 100ml",
+    "category": "Personal Care",
+    "text": "Product Hydrating Sunscreen SPF 50 100ml (SKU: P018). Category: Personal Care. Selling Price: \u20b9550.0, Cost Price: \u20b9260.0. Reorder Threshold: 25 units. Supplier: Dermacare Pharma."
+  },
+  {
+    "id": "prod_P020",
+    "type": "product",
+    "product_id": "P020",
+    "product_name": "Botanical Shampoo Bar 100g",
+    "category": "Personal Care",
+    "text": "Product Botanical Shampoo Bar 100g (SKU: P020). Category: Personal Care. Selling Price: \u20b9299.0, Cost Price: \u20b9120.0. Reorder Threshold: 20 units. Supplier: EarthPure Labs."
+  },
+  {
+    "id": "prod_P021",
+    "type": "product",
+    "product_id": "P021",
+    "product_name": "Hand Sanitizer Spray 60ml",
+    "category": "Personal Care",
+    "text": "Product Hand Sanitizer Spray 60ml (SKU: P021). Category: Personal Care. Selling Price: \u20b999.0, Cost Price: \u20b930.0. Reorder Threshold: 60 units. Supplier: Dermacare Pharma."
+  },
+  {
+    "id": "prod_P022",
+    "type": "product",
+    "product_id": "P022",
+    "product_name": "Organic Lip Balm Mint 15g",
+    "category": "Personal Care",
+    "text": "Product Organic Lip Balm Mint 15g (SKU: P022). Category: Personal Care. Selling Price: \u20b9160.0, Cost Price: \u20b960.0. Reorder Threshold: 35 units. Supplier: EarthPure Labs."
+  },
+  {
+    "id": "prod_P019",
+    "type": "product",
+    "product_id": "P019",
+    "product_name": "Artisan Ceramic Mug 350ml",
+    "category": "Home",
+    "text": "Product Artisan Ceramic Mug 350ml (SKU: P019). Category: Home. Selling Price: \u20b9450.0, Cost Price: \u20b9180.0. Reorder Threshold: 25 units. Supplier: ClayCraft Studios."
+  },
+  {
+    "id": "prod_P023",
+    "type": "product",
+    "product_id": "P023",
+    "product_name": "Aromatherapy Soy Candle Lavender",
+    "category": "Home",
+    "text": "Product Aromatherapy Soy Candle Lavender (SKU: P023). Category: Home. Selling Price: \u20b9599.0, Cost Price: \u20b9240.0. Reorder Threshold: 20 units. Supplier: Lumina Scents."
+  },
+  {
+    "id": "prod_P024",
+    "type": "product",
+    "product_id": "P024",
+    "product_name": "Stainless Steel Water Bottle 750ml",
+    "category": "Home",
+    "text": "Product Stainless Steel Water Bottle 750ml (SKU: P024). Category: Home. Selling Price: \u20b9799.0, Cost Price: \u20b9380.0. Reorder Threshold: 25 units. Supplier: HydroSteel Living."
+  },
+  {
+    "id": "prod_P025",
+    "type": "product",
+    "product_id": "P025",
+    "product_name": "Linen Hand Towel Set of 2",
+    "category": "Home",
+    "text": "Product Linen Hand Towel Set of 2 (SKU: P025). Category: Home. Selling Price: \u20b9699.0, Cost Price: \u20b9310.0. Reorder Threshold: 20 units. Supplier: ComfortFabrics Co."
+  },
+  {
+    "id": "prod_P026",
+    "type": "product",
+    "product_id": "P026",
+    "product_name": "Bamboo Desk Organizer",
+    "category": "Home",
+    "text": "Product Bamboo Desk Organizer (SKU: P026). Category: Home. Selling Price: \u20b9899.0, Cost Price: \u20b9410.0. Reorder Threshold: 15 units. Supplier: EcoDesk Solutions."
+  },
+  {
+    "id": "prod_P027",
+    "type": "product",
+    "product_id": "P027",
+    "product_name": "Premium Fountain Pen Set",
+    "category": "Stationery",
+    "text": "Product Premium Fountain Pen Set (SKU: P027). Category: Stationery. Selling Price: \u20b91899.0, Cost Price: \u20b9950.0. Reorder Threshold: 15 units. Supplier: MontScribe Writing."
+  },
+  {
+    "id": "prod_P028",
+    "type": "product",
+    "product_id": "P028",
+    "product_name": "Hardcover Dotted Journal 200p",
+    "category": "Stationery",
+    "text": "Product Hardcover Dotted Journal 200p (SKU: P028). Category: Stationery. Selling Price: \u20b9499.0, Cost Price: \u20b9200.0. Reorder Threshold: 30 units. Supplier: PaperMill Goods."
+  },
+  {
+    "id": "prod_P029",
+    "type": "product",
+    "product_id": "P029",
+    "product_name": "Gel Ink Pens Pack of 5",
+    "category": "Stationery",
+    "text": "Product Gel Ink Pens Pack of 5 (SKU: P029). Category: Stationery. Selling Price: \u20b9250.0, Cost Price: \u20b990.0. Reorder Threshold: 40 units. Supplier: PaperMill Goods."
+  },
+  {
+    "id": "prod_P030",
+    "type": "product",
+    "product_id": "P030",
+    "product_name": "Desk Sticky Notes Pastel Pack",
+    "category": "Stationery",
+    "text": "Product Desk Sticky Notes Pastel Pack (SKU: P030). Category: Stationery. Selling Price: \u20b9149.0, Cost Price: \u20b945.0. Reorder Threshold: 50 units. Supplier: OfficePrime Supplies."
+  },
+  {
+    "id": "prod_P031",
+    "type": "product",
+    "product_id": "P031",
+    "product_name": "Dual-Tip Pastel Highlighters (6pk)",
+    "category": "Stationery",
+    "text": "Product Dual-Tip Pastel Highlighters (6pk) (SKU: P031). Category: Stationery. Selling Price: \u20b9320.0, Cost Price: \u20b9120.0. Reorder Threshold: 30 units. Supplier: OfficePrime Supplies."
+  },
+  {
+    "id": "prod_P032",
+    "type": "product",
+    "product_id": "P032",
+    "product_name": "Leather Cardholder Wallet",
+    "category": "Stationery",
+    "text": "Product Leather Cardholder Wallet (SKU: P032). Category: Stationery. Selling Price: \u20b9850.0, Cost Price: \u20b9380.0. Reorder Threshold: 20 units. Supplier: MontScribe Writing."
+  },
+  {
+    "id": "store_S001",
+    "type": "store",
+    "store_id": "S001",
+    "store_name": "Downtown Store",
+    "text": "Store Downtown Store (ID: S001). Physical Location: Metro Central Hub, 5th Avenue. Retail format: Flagship and regional hub."
+  },
+  {
+    "id": "store_S002",
+    "type": "store",
+    "store_id": "S002",
+    "store_name": "Mall Store",
+    "text": "Store Mall Store (ID: S002). Physical Location: Westside Galleria, Level 2. Retail format: Flagship and regional hub."
+  },
+  {
+    "id": "store_S003",
+    "type": "store",
+    "store_id": "S003",
+    "store_name": "Airport Store",
+    "text": "Store Airport Store (ID: S003). Physical Location: International Terminal 2 Departures. Retail format: Flagship and regional hub."
+  },
+  {
+    "id": "concept_stockout",
+    "type": "concept",
+    "concept": "stockout",
+    "text": "Stock-out risk, low inventory, running out, depleted stock, urgent reorder, days of inventory remaining under 7 days."
+  },
+  {
+    "id": "concept_overstock",
+    "type": "concept",
+    "concept": "overstock",
+    "text": "Overstocked inventory, excess stock, surplus items, days of inventory exceeding 45 days, tied up working capital."
+  },
+  {
+    "id": "concept_slow",
+    "type": "concept",
+    "concept": "slow_moving",
+    "text": "Slow moving products, low velocity, stagnant stock, dead inventory, unsold items over 60 days."
+  },
+  {
+    "id": "concept_spike",
+    "type": "concept",
+    "concept": "sales_spike",
+    "text": "Sales spike, sales surge, demand increase, recent sales jump over 40% vs baseline."
+  },
+  {
+    "id": "concept_drop",
+    "type": "concept",
+    "concept": "sales_drop",
+    "text": "Sales drop, declining sales, decreased revenue, falling volume over 30% decline."
+  },
+  {
+    "id": "concept_attention",
+    "type": "concept",
+    "concept": "attention_today",
+    "text": "What needs attention today, critical daily flags, manager checklist, urgent tasks."
+  }
+]
