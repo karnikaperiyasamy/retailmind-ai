@@ -47,9 +47,38 @@ class DataLoader:
         self.sales_df = pd.read_csv(sales_path)
         self.inventory_df = pd.read_csv(inventory_path)
 
+        # Validate required columns defensively
+        required_product_cols = {"product_id", "product_name", "category", "selling_price", "cost_price", "reorder_level", "supplier"}
+        required_store_cols = {"store_id", "store_name", "location"}
+        required_sales_cols = {"date", "store_id", "product_id", "quantity_sold", "revenue"}
+        required_inv_cols = {"date", "store_id", "product_id", "stock_quantity"}
+
+        if not required_product_cols.issubset(self.products_df.columns):
+            missing = required_product_cols - set(self.products_df.columns)
+            raise ValueError(f"products.csv missing required columns: {missing}")
+        if not required_store_cols.issubset(self.stores_df.columns):
+            missing = required_store_cols - set(self.stores_df.columns)
+            raise ValueError(f"stores.csv missing required columns: {missing}")
+        if not required_sales_cols.issubset(self.sales_df.columns):
+            missing = required_sales_cols - set(self.sales_df.columns)
+            raise ValueError(f"sales.csv missing required columns: {missing}")
+        if not required_inv_cols.issubset(self.inventory_df.columns):
+            missing = required_inv_cols - set(self.inventory_df.columns)
+            raise ValueError(f"inventory.csv missing required columns: {missing}")
+
         # Convert date columns to datetime for fast time-series queries
         self.sales_df["date"] = pd.to_datetime(self.sales_df["date"])
         self.inventory_df["date"] = pd.to_datetime(self.inventory_df["date"])
+
+        # Defensive numeric conversions
+        self.products_df["selling_price"] = pd.to_numeric(self.products_df["selling_price"], errors="coerce").fillna(0.0)
+        self.products_df["cost_price"] = pd.to_numeric(self.products_df["cost_price"], errors="coerce").fillna(0.0)
+        self.products_df["reorder_level"] = pd.to_numeric(self.products_df["reorder_level"], errors="coerce").fillna(0).astype(int)
+
+        self.sales_df["quantity_sold"] = pd.to_numeric(self.sales_df["quantity_sold"], errors="coerce").fillna(0).astype(int)
+        self.sales_df["revenue"] = pd.to_numeric(self.sales_df["revenue"], errors="coerce").fillna(0.0)
+
+        self.inventory_df["stock_quantity"] = pd.to_numeric(self.inventory_df["stock_quantity"], errors="coerce").fillna(0).astype(int)
 
         # Create quick lookup dicts
         self.store_map = self.stores_df.set_index("store_id").to_dict(orient="index")

@@ -70,18 +70,32 @@ def index():
 @app.route("/api/health", methods=["GET"])
 def api_health():
     """System health check and status."""
+    has_gemini = bool(os.environ.get("GEMINI_API_KEY", "").strip() and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here")
     return jsonify({
         "status": "healthy",
         "service": "RetailMind AI",
         "version": "1.0.0",
         "hackathon": "NexusTiQ24",
         "track_id": "PS03",
-        "gemini_available": bool(os.environ.get("GEMINI_API_KEY", "").strip() and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here"),
-        "gemini_mode": "Active (LLM Reasoning + gemini-embedding-001)" if os.environ.get("GEMINI_API_KEY", "").strip() and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here" else "Deterministic Fallback (Zero Hallucination Guaranteed)",
+        "gemini_available": has_gemini,
+        "message": "Gemini is available." if has_gemini else "Gemini is unavailable. Deterministic analytics are still available.",
+        "gemini_mode": "Active (LLM Reasoning + gemini-embedding-001)" if has_gemini else "Deterministic Fallback (Zero Hallucination Guaranteed)",
         "stores_loaded": len(data_loader.get_stores()),
         "products_loaded": len(data_loader.get_products()),
         "latest_data_date": data_loader.get_latest_date().strftime("%Y-%m-%d")
     })
+
+@app.errorhandler(404)
+def handle_404(e):
+    if request.path.startswith("/api/"):
+        return jsonify({"success": False, "error": "Endpoint not found", "status": 404}), 404
+    return render_template("index.html"), 404
+
+@app.errorhandler(500)
+def handle_500(e):
+    if request.path.startswith("/api/"):
+        return jsonify({"success": False, "error": "Internal server error", "status": 500}), 500
+    return render_template("index.html"), 500
 
 @app.route("/api/dashboard", methods=["GET"])
 def api_dashboard():
