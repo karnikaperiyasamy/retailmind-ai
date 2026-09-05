@@ -27,8 +27,8 @@
 - [x] **Deployment configuration**: `render.yaml` and `Procfile` configured for Render Web Service
 - [x] **Automated test suite**: 25 automated unit and REST endpoint tests passing via `python -m unittest tests/test_retailmind.py`
 - [x] **Submission documentation complete**: `README.md`, `DEMO_SCRIPT.md`, `PITCH.md`, `EVALUATION_MAPPING.md`
-- [ ] **GitHub repository URL**: [Insert your GitHub repo URL here]
-- [ ] **Application deployed URL**: [Insert Render live URL here once pushed]
+- [x] **GitHub repository URL**: https://github.com/karnikaperiyasamy/retailmind-ai
+- [ ] **Application deployed URL**: [Pending Render service launch]
 - [ ] **Demo video link**: [Insert 3-5 minute demo video URL here]
 - [ ] **Devfolio submission**: Ready for submission on Devfolio portal
 

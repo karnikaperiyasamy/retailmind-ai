@@ -194,7 +194,7 @@ The application requires **zero npm builds**, **no docker**, and **no second ter
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/your-username/retailmind-ai.git
+git clone https://github.com/karnikaperiyasamy/retailmind-ai.git
 cd retailmind-ai
 
 # 2. Install dependencies (Python 3.11 compatible)
