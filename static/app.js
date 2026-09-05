@@ -137,10 +137,11 @@ async function fetchDashboard() {
     }
 }
 
-// 3. Render Dashboard Charts (using Chart.js if available)
+// 3. Render Dashboard Charts (using Chart.js if available, with pure SVG fallback)
 function renderDashboardCharts(data) {
     if (typeof Chart === 'undefined') {
-        console.warn('Chart.js not loaded, skipping visual charts.');
+        console.warn('Chart.js not loaded, rendering lightweight SVG visual graphs.');
+        renderSvgFallbacks(data);
         return;
     }
 
@@ -271,6 +272,27 @@ function renderDashboardCharts(data) {
                 }
             }
         });
+    }
+}
+
+// Resilient SVG fallback when Chart.js CDN is unavailable
+function renderSvgFallbacks(data) {
+    const trendWrap = document.getElementById('salesTrendChart')?.parentElement;
+    if (trendWrap && data.sales_trend_90d) {
+        const trend = data.sales_trend_90d;
+        const maxVal = Math.max(...trend.map(d => d.revenue));
+        const pts = trend.map((d, i) => {
+            const x = (i / (trend.length - 1)) * 500;
+            const y = 140 - (d.revenue / maxVal) * 110;
+            return `${x},${y}`;
+        }).join(' ');
+        trendWrap.innerHTML = `
+            <svg viewBox="0 0 500 160" style="width:100%; height:100%; overflow:visible;">
+                <polyline fill="none" stroke="#6366F1" stroke-width="2.5" points="${pts}"/>
+                <text x="10" y="20" fill="#9CA3AF" font-size="11">Peak: ₹${Math.round(maxVal).toLocaleString('en-IN')}</text>
+                <text x="10" y="155" fill="#6B7280" font-size="10">90-Day Trendline (SVG Fallback Active)</text>
+            </svg>
+        `;
     }
 }
 
@@ -448,8 +470,11 @@ function renderAttentionItems(filter) {
                     <div class="g-content">${item.rec}</div>
                 </div>
 
-                <div class="human-note">
-                    Human-in-the-Loop Safeguard: This recommendation requires store manager approval before any purchase order, transfer, or price change is authorized.
+                <div class="human-note" style="display:flex; justify-content:space-between; align-items:center; grid-column:span 2; margin-top:8px;">
+                    <span>Human-in-the-Loop Safeguard: This recommendation requires store manager approval before any operational action.</span>
+                    <button class="btn-detail" onclick="askCopilot('What is the inventory situation for ${item.title.replace(/'/g, '')}?')">
+                        Investigate with AI Copilot &rarr;
+                    </button>
                 </div>
             </div>
         </div>
