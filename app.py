@@ -70,7 +70,10 @@ def index():
 @app.route("/api/health", methods=["GET"])
 def api_health():
     """System health check and status."""
+    has_groq = bool(os.environ.get("GROQ_API_KEY", "").strip() and os.environ.get("GROQ_API_KEY") != "your_groq_api_key_here")
     has_gemini = bool(os.environ.get("GEMINI_API_KEY", "").strip() and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here")
+    llm_provider = "Groq (qwen3.8-27b)" if has_groq else ("Gemini 1.5 Flash" if has_gemini else "Deterministic Fallback")
+
     return jsonify({
         "status": "healthy",
         "service": "RetailMind AI",
@@ -78,8 +81,10 @@ def api_health():
         "hackathon": "NexusTiQ24",
         "track_id": "PS03",
         "gemini_available": has_gemini,
-        "message": "Gemini is available." if has_gemini else "Gemini is unavailable. Deterministic analytics are still available.",
-        "gemini_mode": "Active (LLM Reasoning + gemini-embedding-001)" if has_gemini else "Deterministic Fallback (Zero Hallucination Guaranteed)",
+        "groq_available": has_groq,
+        "active_provider": llm_provider,
+        "message": f"LLM active: {llm_provider}",
+        "gemini_mode": llm_provider,
         "stores_loaded": len(data_loader.get_stores()),
         "products_loaded": len(data_loader.get_products()),
         "latest_data_date": data_loader.get_latest_date().strftime("%Y-%m-%d")
