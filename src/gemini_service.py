@@ -198,7 +198,10 @@ Please respond in valid JSON with this exact schema:
   "limitations": ["Limitation or uncertainty 1"]
 }}
 """
-        response = self.gemini_model.generate_content(prompt)
+        response = self.gemini_model.generate_content(
+            prompt,
+            request_options={"timeout": 8.0}
+        )
         text = response.text.strip()
 
         if text.startswith("```json"):
